@@ -11,7 +11,10 @@
  */
 
 import React, { type ReactNode } from 'react';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import {
+  SafeAreaProvider,
+  initialWindowMetrics,
+} from 'react-native-safe-area-context';
 import { ReduxProvider } from './ReduxProvider';
 import { ReactQueryProvider } from './ReactQueryProvider';
 import { ThemeProvider } from './ThemeProvider';
@@ -24,7 +27,7 @@ type AppProvidersProps = {
 
 export function AppProviders({ children }: AppProvidersProps) {
   return (
-    <SafeAreaProvider>
+    <SafeAreaProvider initialMetrics={initialWindowMetrics}>
       <ReduxProvider>
         <ReactQueryProvider>
           <ThemeProvider>

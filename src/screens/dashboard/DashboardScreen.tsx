@@ -15,6 +15,7 @@ import {
 } from 'react-native';
 import { useAppTheme } from '@/theme/useAppTheme';
 import { useUIStore } from '@/store/zustand/useUIStore';
+import { SafeScreen } from '@/components/layout/SafeScreen';
 import type { BottomTabScreenPropsType } from '@/navigation/types';
 
 export function DashboardScreen({}: BottomTabScreenPropsType<'Dashboard'>) {
@@ -30,10 +31,11 @@ export function DashboardScreen({}: BottomTabScreenPropsType<'Dashboard'>) {
   ];
 
   return (
-    <ScrollView
-      style={[styles.container, { backgroundColor: colors.background }]}
-      contentContainerStyle={{ padding: spacing.lg, paddingBottom: spacing.xxxl }}
-    >
+    <SafeScreen edges={['top', 'left', 'right']}>
+      <ScrollView
+        style={[styles.container, { backgroundColor: colors.background }]}
+        contentContainerStyle={{ padding: spacing.lg, paddingBottom: spacing.xxxl }}
+      >
       <View style={styles.header}>
         <Text
           style={[
@@ -167,7 +169,8 @@ export function DashboardScreen({}: BottomTabScreenPropsType<'Dashboard'>) {
           </Text>
         </TouchableOpacity>
       </View>
-    </ScrollView>
+      </ScrollView>
+    </SafeScreen>
   );
 }
 

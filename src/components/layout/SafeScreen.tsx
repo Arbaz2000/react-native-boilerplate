@@ -12,11 +12,13 @@ import React from 'react';
 import {
   StatusBar,
   StyleSheet,
+  Platform,
   type StyleProp,
   type ViewStyle,
 } from 'react-native';
 import {
   SafeAreaView,
+  useSafeAreaInsets,
   type Edge,
 } from 'react-native-safe-area-context';
 import { useAppTheme } from '@/theme/useAppTheme';
@@ -35,6 +37,15 @@ export function SafeScreen({
   testID,
 }: SafeScreenProps): React.JSX.Element {
   const { colors, dark } = useAppTheme();
+  const insets = useSafeAreaInsets();
+
+  const fallbackStatusBar = Platform.OS === 'android' ? 24 : 0;
+  const statusBarHeight =
+    Platform.OS === 'android'
+      ? (StatusBar.currentHeight ?? fallbackStatusBar)
+      : 0;
+  const needsTopPadding =
+    edges?.includes('top') && insets.top === 0 && statusBarHeight > 0;
 
   return (
     <SafeAreaView
@@ -42,13 +53,14 @@ export function SafeScreen({
       edges={edges}
       style={[
         styles.container,
-        { backgroundColor: colors.background },
+        {
+          backgroundColor: colors.background,
+          paddingTop: needsTopPadding ? statusBarHeight : 0,
+        },
         style,
       ]}
     >
-      <StatusBar
-        barStyle={dark ? 'light-content' : 'dark-content'}
-      />
+      <StatusBar barStyle={dark ? 'light-content' : 'dark-content'} />
       {children}
     </SafeAreaView>
   );

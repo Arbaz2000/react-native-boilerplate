@@ -26,6 +26,7 @@ import {
 import { useAppTheme } from '@/theme/useAppTheme';
 import { useOnboardingStore } from '@/store/zustand/useOnboardingStore';
 import { resetRoot } from '@/navigation/navigationRef';
+import { SafeScreen } from '@/components/layout/SafeScreen';
 import { ONBOARDING_SLIDES, type OnboardingSlide } from '@/config/branding';
 import type { OnboardingStackScreenProps } from '@/navigation/types';
 
@@ -64,9 +65,10 @@ export function WelcomeScreen({}: OnboardingStackScreenProps<'Welcome'>) {
   const isLastSlide = currentIndex === ONBOARDING_SLIDES.length - 1;
 
   return (
-    <View style={[styles.container, { backgroundColor: colors.background }]}>
-      {/* Top Bar with Skip */}
-      <View style={[styles.topBar, { paddingHorizontal: spacing.xl, paddingTop: spacing.xl }]}>
+    <SafeScreen edges={['top', 'left', 'right', 'bottom']}>
+      <View style={[styles.container, { backgroundColor: colors.background }]}>
+        {/* Top Bar with Skip */}
+        <View style={[styles.topBar, { paddingHorizontal: spacing.xl, paddingTop: spacing.sm }]}>
         <View style={styles.topBarSpacer} />
         {!isLastSlide ? (
           <TouchableOpacity
@@ -195,6 +197,7 @@ export function WelcomeScreen({}: OnboardingStackScreenProps<'Welcome'>) {
         </TouchableOpacity>
       </View>
     </View>
+    </SafeScreen>
   );
 }
 

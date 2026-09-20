@@ -32,6 +32,7 @@ import {
   PermissionGate,
   type PermissionKey,
 } from '@/features/permissions';
+import { SafeScreen } from '@/components/layout/SafeScreen';
 import type { BottomTabScreenPropsType } from '@/navigation/types';
 
 export function SettingsScreen({ navigation }: BottomTabScreenPropsType<'Settings'>) {
@@ -66,10 +67,11 @@ export function SettingsScreen({ navigation }: BottomTabScreenPropsType<'Setting
   };
 
   return (
-    <ScrollView
-      style={[styles.container, { backgroundColor: colors.background }]}
-      contentContainerStyle={{ padding: spacing.lg, paddingBottom: spacing.xxxl }}
-    >
+    <SafeScreen edges={['top', 'left', 'right']}>
+      <ScrollView
+        style={[styles.container, { backgroundColor: colors.background }]}
+        contentContainerStyle={{ padding: spacing.lg, paddingBottom: spacing.xxxl }}
+      >
       <View style={styles.header}>
         <Text style={[typography.headlineMedium, { color: colors.textPrimary }]}>
           Settings
@@ -462,7 +464,8 @@ export function SettingsScreen({ navigation }: BottomTabScreenPropsType<'Setting
           Sign Out of Workspace
         </Text>
       </TouchableOpacity>
-    </ScrollView>
+      </ScrollView>
+    </SafeScreen>
   );
 }
 

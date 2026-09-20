@@ -27,6 +27,7 @@ import {
 import { useAppTheme } from '@/theme/useAppTheme';
 import { useAuthStore } from '@/features/auth/auth.slice';
 import { resetRoot } from '@/navigation/navigationRef';
+import { SafeScreen } from '@/components/layout/SafeScreen';
 import { APP_IDENTITY } from '@/config/branding';
 import type { AuthStackScreenProps } from '@/navigation/types';
 
@@ -74,10 +75,11 @@ export function SignupScreen({ navigation }: AuthStackScreenProps<'Signup'>) {
   };
 
   return (
-    <KeyboardAvoidingView
-      style={[styles.flex, { backgroundColor: colors.background }]}
-      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-    >
+    <SafeScreen edges={['top', 'left', 'right']}>
+      <KeyboardAvoidingView
+        style={[styles.flex, { backgroundColor: colors.background }]}
+        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+      >
       <ScrollView
         contentContainerStyle={[styles.scrollContent, { padding: spacing.xl }]}
         keyboardShouldPersistTaps="handled"
@@ -250,6 +252,7 @@ export function SignupScreen({ navigation }: AuthStackScreenProps<'Signup'>) {
         </View>
       </ScrollView>
     </KeyboardAvoidingView>
+    </SafeScreen>
   );
 }
 

@@ -21,6 +21,7 @@ import {
 import { useAppTheme } from '@/theme/useAppTheme';
 import { APP_VERSION } from '@/config/constants';
 import { APP_IDENTITY } from '@/config/branding';
+import { SafeScreen } from '@/components/layout/SafeScreen';
 import type { RootStackScreenProps } from '@/navigation/types';
 
 export function UpdateRequiredModal({
@@ -43,7 +44,8 @@ export function UpdateRequiredModal({
   const canGoBack = navigation.canGoBack();
 
   return (
-    <View style={[styles.container, { backgroundColor: colors.background, padding: spacing.xl }]}>
+    <SafeScreen edges={['top', 'bottom', 'left', 'right']}>
+      <View style={[styles.container, { backgroundColor: colors.background, padding: spacing.xl }]}>
       <View style={styles.content}>
         {/* Warning Icon Emblem */}
         <View
@@ -146,6 +148,7 @@ export function UpdateRequiredModal({
         ) : null}
       </View>
     </View>
+    </SafeScreen>
   );
 }
 

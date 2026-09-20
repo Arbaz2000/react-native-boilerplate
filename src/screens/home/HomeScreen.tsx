@@ -16,6 +16,7 @@ import {
 import { useAppTheme } from '@/theme/useAppTheme';
 import { useAuthStore } from '@/features/auth/auth.slice';
 import { useUIStore } from '@/store/zustand/useUIStore';
+import { SafeScreen } from '@/components/layout/SafeScreen';
 import { APP_IDENTITY } from '@/config/branding';
 import env from '@/config/env';
 import type { BottomTabScreenPropsType } from '@/navigation/types';
@@ -40,10 +41,11 @@ export function HomeScreen({}: BottomTabScreenPropsType<'Home'>) {
   };
 
   return (
-    <ScrollView
-      style={[styles.container, { backgroundColor: colors.background }]}
-      contentContainerStyle={{ padding: spacing.lg, paddingBottom: spacing.xxxl }}
-    >
+    <SafeScreen edges={['top', 'left', 'right']}>
+      <ScrollView
+        style={[styles.container, { backgroundColor: colors.background }]}
+        contentContainerStyle={{ padding: spacing.lg, paddingBottom: spacing.xxxl }}
+      >
       {/* Header Profile / Welcome */}
       <View style={styles.header}>
         <View style={styles.rowBetween}>
@@ -190,7 +192,8 @@ export function HomeScreen({}: BottomTabScreenPropsType<'Home'>) {
           </Text>
         </View>
       </View>
-    </ScrollView>
+      </ScrollView>
+    </SafeScreen>
   );
 }
 

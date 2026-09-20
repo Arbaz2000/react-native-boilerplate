@@ -12,6 +12,8 @@ import {
   TouchableOpacity,
   StyleSheet,
   View,
+  Platform,
+  StatusBar,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useUIStore } from '@/store/zustand/useUIStore';
@@ -23,7 +25,14 @@ export function Toast(): React.JSX.Element | null {
   const { colors, spacing, radii, typography } = useAppTheme();
   const insets = useSafeAreaInsets();
 
-  const translateY = useRef(new Animated.Value(-100)).current;
+  const fallbackStatusBar = Platform.OS === 'ios' ? 44 : 24;
+  const statusBarHeight =
+    Platform.OS === 'android'
+      ? (StatusBar.currentHeight ?? fallbackStatusBar)
+      : fallbackStatusBar;
+  const topSafeOffset = Math.max(insets.top, statusBarHeight) + spacing.md;
+
+  const translateY = useRef(new Animated.Value(-200)).current;
   const opacity = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
@@ -44,7 +53,7 @@ export function Toast(): React.JSX.Element | null {
     } else {
       Animated.parallel([
         Animated.timing(translateY, {
-          toValue: -100,
+          toValue: -200,
           duration: 200,
           useNativeDriver: true,
         }),
@@ -101,7 +110,7 @@ export function Toast(): React.JSX.Element | null {
       style={[
         styles.container,
         {
-          top: insets.top + spacing.sm,
+          top: topSafeOffset,
           transform: [{ translateY }],
           opacity,
           backgroundColor: colors.surface,
@@ -148,12 +157,12 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: 16,
     right: 16,
-    zIndex: 9999,
+    zIndex: 99999,
+    elevation: 999,
     borderLeftWidth: 4,
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.2,
     shadowRadius: 8,
-    elevation: 8,
   },
   contentRow: {
     flexDirection: 'row',
