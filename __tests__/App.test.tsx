@@ -22,8 +22,12 @@ test('renders correctly', async () => {
   });
 
   await ReactTestRenderer.act(async () => {
-    jest.runAllTimers();
+    jest.advanceTimersByTime(2000);
   });
 
   expect(renderer).toBeDefined();
+
+  await ReactTestRenderer.act(async () => {
+    renderer?.unmount();
+  });
 });

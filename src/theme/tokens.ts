@@ -151,6 +151,11 @@ export const typography = {
     lineHeight: 32,
     fontWeight: '700' as const,
   },
+  headlineSmall: {
+    fontSize: 20,
+    lineHeight: 28,
+    fontWeight: '700' as const,
+  },
   titleLarge: {
     fontSize: 20,
     lineHeight: 28,
