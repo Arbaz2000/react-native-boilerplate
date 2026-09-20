@@ -1,7 +1,7 @@
 /**
  * src/features/auth/auth.types.ts
  *
- * Types for user entity, authentication tokens, and credentials.
+ * Types for user entity, authentication tokens, credentials, and API payloads.
  */
 
 export type AuthUser = {
@@ -25,4 +25,22 @@ export type SignupCredentials = {
   name: string;
   email: string;
   password: string;
+};
+
+export type LoginResponse = {
+  user: AuthUser;
+  tokens: AuthTokens;
+};
+
+export type SignupResponse = {
+  user: AuthUser;
+  tokens: AuthTokens;
+};
+
+export type RefreshTokenRequest = {
+  refreshToken: string;
+};
+
+export type RefreshTokenResponse = {
+  tokens: AuthTokens;
 };

@@ -5,6 +5,7 @@
  * This is the ONLY place in the codebase that reads `Config` directly.
  * All feature code imports from here — never from react-native-config directly.
  */
+
 import Config from 'react-native-config';
 
 const env = {
@@ -13,6 +14,9 @@ const env = {
   remoteConfigUrl: Config.REMOTE_CONFIG_URL ?? '',
   featureOnboarding: Config.FEATURE_ONBOARDING === '1',
   featureForceUpdate: Config.FEATURE_FORCE_UPDATE === '1',
+  isDevelopment: (Config.APP_ENV ?? 'development') === 'development',
+  isStaging: Config.APP_ENV === 'staging',
+  isProduction: Config.APP_ENV === 'production',
 } as const;
 
 export default env;
