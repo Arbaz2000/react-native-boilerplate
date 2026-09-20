@@ -41,14 +41,18 @@ export function useAppTheme(): AppTheme & {
   preference: ThemePreference;
   /** Change the theme preference — persisted across app restarts */
   setPreference: (pref: ThemePreference) => void;
+  /** Cycle preference: system → light → dark → system */
+  togglePreference: () => void;
 } {
   const theme = useContext(ThemeContext);
   const preference = useThemeStore(s => s.preference);
   const setPreference = useThemeStore(s => s.setPreference);
+  const togglePreference = useThemeStore(s => s.togglePreference);
 
   return {
     ...theme,
     preference,
     setPreference,
+    togglePreference,
   };
 }

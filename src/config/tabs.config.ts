@@ -14,9 +14,11 @@
  *   4 → Settings   (always present)
  */
 
+import type { BottomTabParamList } from '@/navigation/types';
+
 export type TabConfig = {
-  /** Route name — must match a screen registered in BottomTabNavigator */
-  name: string;
+  /** Route name — must match a screen registered in BottomTabParamList */
+  name: keyof BottomTabParamList;
   /** Label shown in the tab bar */
   label: string;
   /** SF Symbol name (iOS) or Material icon name (Android) — or pass a component */

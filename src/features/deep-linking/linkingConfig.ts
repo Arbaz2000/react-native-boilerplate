@@ -11,30 +11,48 @@
  *   4. If using Universal Links / App Links, update your
  *      apple-app-site-association / assetlinks.json on the client domain.
  * ─────────────────────────────────────────────────────────────
- *
- * Phase C: Add `LinkingOptions<RootStackParamList>` type from @react-navigation/native
- * and fill in the `screens` map once all navigators are wired.
  */
+
+import type { LinkingOptions } from '@react-navigation/native';
+import type { RootStackParamList } from '@/navigation/types';
 
 /** Custom URL scheme — change this and the native manifest/plist entries together. */
 export const DEEP_LINK_SCHEME = 'rnboilerplate';
 
 /**
- * Phase A stub — upgraded to typed LinkingOptions in Phase C.
- * The `prefixes` and `screens` map are the two things you edit here per client.
+ * React Navigation deep linking configuration.
+ * Maps URL paths to screens and nested stacks.
  */
-export const linkingConfig = {
+export const linkingConfig: LinkingOptions<RootStackParamList> = {
   prefixes: [
     `${DEEP_LINK_SCHEME}://`,
-    // Add Universal Link domain here when configured, e.g.:
-    // 'https://yourdomain.com',
+    // Universal Links / App Links domain placeholder:
+    // 'https://example.com/app',
   ],
   config: {
     screens: {
-      // Populated in Phase C once navigators are defined.
-      // Example:
-      // Auth: { screens: { Login: 'login' } },
-      // Home: 'home',
-    } as Record<string, unknown>,
+      Splash: 'splash',
+      Onboarding: {
+        screens: {
+          Welcome: 'welcome',
+        },
+      },
+      Auth: {
+        screens: {
+          Login: 'login',
+          Signup: 'signup',
+        },
+      },
+      Main: {
+        screens: {
+          Home: 'home',
+          Dashboard: 'dashboard',
+          Explore: 'explore',
+          Chat: 'chat',
+          Settings: 'settings',
+        },
+      },
+      UpdateRequired: 'update-required',
+    },
   },
 };

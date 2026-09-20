@@ -139,6 +139,58 @@ export const typography = {
     semiBold: '600' as const,
     bold: '700' as const,
   },
+
+  // ── Style Presets ─────────────────────────────
+  headlineLarge: {
+    fontSize: 30,
+    lineHeight: 40,
+    fontWeight: '700' as const,
+  },
+  headlineMedium: {
+    fontSize: 24,
+    lineHeight: 32,
+    fontWeight: '700' as const,
+  },
+  titleLarge: {
+    fontSize: 20,
+    lineHeight: 28,
+    fontWeight: '600' as const,
+  },
+  titleMedium: {
+    fontSize: 16,
+    lineHeight: 24,
+    fontWeight: '600' as const,
+  },
+  bodyLarge: {
+    fontSize: 16,
+    lineHeight: 24,
+    fontWeight: '400' as const,
+  },
+  bodyMedium: {
+    fontSize: 14,
+    lineHeight: 20,
+    fontWeight: '400' as const,
+  },
+  bodySmall: {
+    fontSize: 12,
+    lineHeight: 16,
+    fontWeight: '400' as const,
+  },
+  labelLarge: {
+    fontSize: 14,
+    lineHeight: 20,
+    fontWeight: '600' as const,
+  },
+  labelMedium: {
+    fontSize: 12,
+    lineHeight: 16,
+    fontWeight: '600' as const,
+  },
+  labelSmall: {
+    fontSize: 10,
+    lineHeight: 14,
+    fontWeight: '500' as const,
+  },
 } as const;
 
 // ──────────────────────────────────────────────
@@ -192,6 +244,15 @@ export type ColorTokens = {
   tabBarActive: string;
   tabBarInactive: string;
   statusBar: 'light-content' | 'dark-content';
+
+  // Ergonomic aliases
+  primary: string;
+  secondary: string;
+  background: string;
+  surface: string;
+  border: string;
+  white: string;
+  accent: string;
 };
 
 // ──────────────────────────────────────────────
@@ -245,6 +306,15 @@ export const lightColors: ColorTokens = {
   tabBarActive: palette.blue600,
   tabBarInactive: palette.gray500,
   statusBar: 'dark-content',
+
+  // Ergonomic aliases
+  primary: palette.blue600,
+  secondary: palette.teal600,
+  background: palette.white,
+  surface: palette.white,
+  border: palette.gray300,
+  white: palette.white,
+  accent: palette.teal600,
 };
 
 // ──────────────────────────────────────────────
@@ -298,6 +368,15 @@ export const darkColors: ColorTokens = {
   tabBarActive: palette.blue500,
   tabBarInactive: palette.gray500,
   statusBar: 'light-content',
+
+  // Ergonomic aliases
+  primary: palette.blue500,
+  secondary: palette.teal400,
+  background: palette.gray950,
+  surface: palette.gray900,
+  border: palette.gray700,
+  white: palette.white,
+  accent: palette.teal400,
 };
 
 // ──────────────────────────────────────────────
