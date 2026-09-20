@@ -73,3 +73,22 @@ yarn-error.log
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+# Environment files — never commit secrets
+# Commit .env.example if you want to document required keys
+.env.development
+.env.staging
+.env.production
+.env.local
+.env
+
+# Firebase config — replace per-client, never commit to shared repo
+# android/app/google-services.json
+# ios/RNFreelanceBoilerplate/GoogleService-Info.plist
+# (Uncomment the above if working in a public/shared repo)
+
+# MSW mock build output
+mocks/browser/mockServiceWorker.js
+
+# TypeScript incremental build info
+*.tsbuildinfo

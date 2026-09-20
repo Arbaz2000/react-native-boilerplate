@@ -1,4 +1,4 @@
-package com.rnfreelanceboilerplate
+package com.arbaz.rnboilerplate
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate

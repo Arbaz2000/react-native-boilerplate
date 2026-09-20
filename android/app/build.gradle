@@ -77,9 +77,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace "com.rnfreelanceboilerplate"
+    namespace "com.arbaz.rnboilerplate"
     defaultConfig {
-        applicationId "com.rnfreelanceboilerplate"
+        applicationId "com.arbaz.rnboilerplate"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
